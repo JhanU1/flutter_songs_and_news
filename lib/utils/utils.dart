@@ -66,12 +66,17 @@ List<MaterialColor> getRandomColors(int amount) {
   });
 }
 
+MaterialColor getRandomColor() {
+  return _myListOfRandomColors[_random.nextInt(_myListOfRandomColors.length)];
+}
+
 List<String> getRandomNames(int amount) {
   return wordPairIterator
       .take(amount)
       .map((pair) => capitalizePair(pair))
       .toList();
 }
+
 
 String capitalize(String word) {
   return '${word[0].toUpperCase()}${word.substring(1).toLowerCase()}';
