@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../model/new_model.dart';
+import '../../model/new_model.dart';
 
 class NewWidget extends StatelessWidget {
   NewWidget({super.key, required this.newModel});

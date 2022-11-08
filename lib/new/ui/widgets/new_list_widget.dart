@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
-import 'package:platform_design/new/widgets/new_widget.dart';
+import 'package:platform_design/new/ui/widgets/new_widget.dart';
 
-import '../../utils/utils.dart';
-import '../model/new_model.dart';
+import '../../../utils/utils.dart';
+import '../../model/new_model.dart';
 
 class NewListWidget extends StatelessWidget {
   NewListWidget({super.key, this.itemsLength = 20}) {
