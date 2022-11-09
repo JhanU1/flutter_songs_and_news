@@ -4,7 +4,8 @@ import 'package:platform_design/ui/widgets/android_drawer.dart';
 import 'package:platform_design/utils/utils.dart';
 
 class SongsPageAndroid extends StatefulWidget {
-  const SongsPageAndroid({super.key, required this.title, required this.iconPage});
+  const SongsPageAndroid(
+      {super.key, required this.title, required this.iconPage});
 
   final String title;
   final IconData iconPage;
@@ -20,7 +21,12 @@ class _SongsPageAndroidState extends State<SongsPageAndroid> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Row(
+          children: [
+            Text(widget.title),
+            Icon(widget.iconPage),
+          ],
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -33,7 +39,7 @@ class _SongsPageAndroidState extends State<SongsPageAndroid> {
           ),
         ],
       ),
-      drawer: AndroidDrawer(),
+      drawer: const AndroidDrawer(),
       body: RefreshIndicator(
           key: _androidRefreshKey,
           onRefresh: () {

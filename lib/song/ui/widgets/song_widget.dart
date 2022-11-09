@@ -13,7 +13,7 @@ class SongWidget extends StatelessWidget {
   }
 
   final Song songModel;
-  late Color color;
+  late final Color color;
   static const Animation<double> heroAnimation = AlwaysStoppedAnimation(0);
   @override
   Widget build(BuildContext context) {

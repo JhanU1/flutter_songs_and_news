@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:platform_design/profile/ui/pages/android/profile_page_android.dart';
-import 'package:platform_design/settings/ui/pages/android/settings_page_android.dart';
-import 'package:platform_design/song/ui/pages/android/songs_page_android.dart';
 
-import '../../new/ui/pages/android/news_page_android.dart';
 import '../../new/ui/pages/news_page.dart';
 import '../../profile/ui/pages/profile_page.dart';
 import '../../settings/ui/pages/settings_page.dart';
@@ -11,6 +7,8 @@ import '../../song/ui/pages/song_page.dart';
 import '../icons/icons_android.dart';
 
 class AndroidDrawer extends StatelessWidget {
+  const AndroidDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(

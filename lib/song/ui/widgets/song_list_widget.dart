@@ -10,7 +10,7 @@ class SongListWidget extends StatelessWidget {
     _items = generateRandomSongs();
   }
 
-  late List<Song> _items;
+  late final List<Song> _items;
   final int itemsLength;
 
   List<Song> generateRandomSongs() {

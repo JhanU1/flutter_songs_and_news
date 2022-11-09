@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../../model/new_model.dart';
 
 class NewWidget extends StatelessWidget {
-  NewWidget({super.key, required this.newModel});
+  const NewWidget({super.key, required this.newModel});
 
-  New newModel;
+  final New newModel;
 
   @override
   Widget build(BuildContext context) {

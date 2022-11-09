@@ -4,8 +4,8 @@ import 'package:platform_design/ui/widgets/pressable_card.dart';
 import '../../model/song_model.dart';
 
 class SongDetailsWidget extends StatelessWidget {
-  SongDetailsWidget({super.key, required this.songModel});
-  Song songModel;
+  const SongDetailsWidget({super.key, required this.songModel});
+  final Song songModel;
   @override
   Widget build(BuildContext context) {
     Animation<double> heroAnimation = const AlwaysStoppedAnimation(1);
@@ -65,33 +65,31 @@ class SongDetailsWidget extends StatelessWidget {
                   return PressableCard(
                     color: songModel.color,
                     flattenAnimation: animation,
-                    child: Container(
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          // The song title banner slides off in the hero animation.
-                          Container(
-                            height: 80,
-                            alignment: Alignment.centerLeft,
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            child: Text(
-                              songModel.name,
-                              style: const TextStyle(
-                                fontSize: 21,
-                                fontWeight: FontWeight.w500,
-                              ),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // The song title banner slides off in the hero animation.
+                        Container(
+                          height: 80,
+                          alignment: Alignment.centerLeft,
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Text(
+                            songModel.name,
+                            style: const TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          // The play button grows in the hero animation.
-                          Container(
-                            alignment: Alignment.centerRight,
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            child: Icon(Icons.play_arrow,
-                                size: 50 + 50 * animation.value,
-                                color: Colors.black38),
-                          ),
-                        ],
-                      ),
+                        ),
+                        // The play button grows in the hero animation.
+                        Container(
+                          alignment: Alignment.centerRight,
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Icon(Icons.play_arrow,
+                              size: 50 + 50 * animation.value,
+                              color: Colors.black38),
+                        ),
+                      ],
                     ),
                   );
                 },
@@ -119,7 +117,7 @@ class SongDetailsWidget extends StatelessWidget {
                   );
                 }
                 // Just a bunch of boxes that simulates loading song choices.
-                return Container(
+                return SizedBox(
                   height: 95,
                   child: Padding(
                     padding:

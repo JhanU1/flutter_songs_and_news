@@ -6,8 +6,8 @@ import 'package:platform_design/song/ui/pages/ios/song_details_page_ios.dart';
 import '../../model/song_model.dart';
 
 class SongDetailspage extends StatelessWidget {
-  SongDetailspage({super.key, required this.songModel});
-  Song songModel;
+  const SongDetailspage({super.key, required this.songModel});
+  final Song songModel;
   @override
   Widget build(BuildContext context) {
     switch (defaultTargetPlatform) {
