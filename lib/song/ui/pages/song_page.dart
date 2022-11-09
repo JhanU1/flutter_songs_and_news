@@ -7,7 +7,7 @@ import 'package:platform_design/ui/icons/icons_ios.dart';
 
 class SongPage extends StatelessWidget {
   const SongPage({super.key});
-  static const String title = 'Settings';
+  static const String title = 'Song';
   @override
   Widget build(BuildContext context) {
     switch (defaultTargetPlatform) {

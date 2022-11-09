@@ -13,7 +13,7 @@ void main() {
   group('Platform tests', () {
     testWidgets('Builds for Android correctly', (tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
-      await tester.pumpWidget(const MyAdaptingApp());
+      await tester.pumpWidget(const MyApp());
 
       // The test should be able to find the drawer button.
       expect(find.byIcon(Icons.menu), findsOneWidget);
@@ -26,7 +26,7 @@ void main() {
 
     testWidgets('Builds for iOS correctly', (tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-      await tester.pumpWidget(const MyAdaptingApp());
+      await tester.pumpWidget(const MyApp());
 
       // There should now be a large title style nav bar.
       expect(find.byType(CupertinoSliverNavigationBar), findsOneWidget);
