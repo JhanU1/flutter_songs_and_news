@@ -18,6 +18,7 @@ class SettingsTab extends StatefulWidget {
 }
 
 class _SettingsTabState extends State<SettingsTab> {
+
   var switch1 = false;
   var switch2 = true;
   var switch3 = true;
