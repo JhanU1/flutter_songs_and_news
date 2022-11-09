@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:platform_design/ui/pages/song_detail_tab.dart';
+import 'package:platform_design/song/ui/widgets/song_details_widget.dart';
 import 'package:platform_design/ui/widgets/pressable_card.dart';
 
 import '../../model/song_model.dart';
@@ -23,11 +23,7 @@ class SongWidget extends StatelessWidget {
         animation: heroAnimation,
         builder: (context, child) {
           return PressableCard(
-            onPressed: () => SongDetailTab(
-              id: songModel.id,
-              song: songModel.name,
-              color: color,
-            ),
+            onPressed: () => SongDetailsWidget(songModel: songModel),
             color: color,
             flattenAnimation: heroAnimation,
             child: Stack(
