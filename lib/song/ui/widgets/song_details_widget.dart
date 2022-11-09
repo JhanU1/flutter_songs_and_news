@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:platform_design/song/ui/widgets/song_list_widget.dart';
 import 'package:platform_design/ui/widgets/pressable_card.dart';
 
 import '../../model/song_model.dart';
 
 class SongDetailsWidget extends StatelessWidget {
-  const SongDetailsWidget(
-      {super.key,
-      required this.songModel,
-      this.lengthItemsRecommended = 8,
-      this.heightItemRecommended = 80});
+  const SongDetailsWidget({
+    super.key,
+    required this.songModel,
+  });
   final Song songModel;
-  final int lengthItemsRecommended;
-  final double heightItemRecommended;
   @override
   Widget build(BuildContext context) {
     Animation<double> heroAnimation = const AlwaysStoppedAnimation(1);
@@ -120,11 +116,6 @@ class SongDetailsWidget extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-              child: SongListWidget(
-            itemsLength: lengthItemsRecommended,
-            heightItem: heightItemRecommended,
-          )),
         ],
       ),
     );
