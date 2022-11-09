@@ -1,30 +1,13 @@
-// Copyright 2020 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:platform_design/ui/widgets/pressable_card.dart';
 
-import '../widgets/pressable_card.dart';
+import '../../model/song_model.dart';
 
-/// Page shown when a card in the songs tab is tapped.
-///
-/// On Android, this page sits at the top of your app. On iOS, this page is on
-/// top of the songs tab's content but is below the tab bar itself.
-class SongDetailTab extends StatelessWidget {
-  const SongDetailTab({
-    required this.id,
-    required this.song,
-    required this.color,
-    super.key,
-  });
-
-  final int id;
-  final String song;
-  final Color color;
-
-  Widget _buildBody(BuildContext context) {
+class SongDetailsWidget extends StatelessWidget {
+  SongDetailsWidget({super.key, required this.songModel});
+  Song songModel;
+  @override
+  Widget build(BuildContext context) {
     Animation<double> heroAnimation = const AlwaysStoppedAnimation(1);
     return SafeArea(
       bottom: false,
@@ -34,40 +17,38 @@ class SongDetailTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Hero(
-            tag: id,
+            tag: songModel.id,
             child: AnimatedBuilder(
               animation: heroAnimation,
               builder: (context, child) {
                 return PressableCard(
-                  color: color,
+                  color: songModel.color,
                   flattenAnimation: heroAnimation,
-                  child: Container(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        // The song title banner slides off in the hero animation.
-                        Container(
-                          height: 80,
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Text(
-                            song,
-                            style: const TextStyle(
-                              fontSize: 21,
-                              fontWeight: FontWeight.w500,
-                            ),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // The song title banner slides off in the hero animation.
+                      Container(
+                        height: 80,
+                        alignment: Alignment.centerLeft,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          songModel.name,
+                          style: const TextStyle(
+                            fontSize: 21,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        // The play button grows in the hero animation.
-                        Container(
-                          alignment: Alignment.centerRight,
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Icon(Icons.play_arrow,
-                              size: 50 + 50 * heroAnimation.value,
-                              color: Colors.black38),
-                        ),
-                      ],
-                    ),
+                      ),
+                      // The play button grows in the hero animation.
+                      Container(
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Icon(Icons.play_arrow,
+                            size: 50 + 50 * heroAnimation.value,
+                            color: Colors.black38),
+                      ),
+                    ],
                   ),
                 );
               },
@@ -82,7 +63,7 @@ class SongDetailTab extends StatelessWidget {
                 animation: animation,
                 builder: (context, child) {
                   return PressableCard(
-                    color: color,
+                    color: songModel.color,
                     flattenAnimation: animation,
                     child: Container(
                       child: Stack(
@@ -94,7 +75,7 @@ class SongDetailTab extends StatelessWidget {
                             alignment: Alignment.centerLeft,
                             padding: const EdgeInsets.symmetric(horizontal: 12),
                             child: Text(
-                              song,
+                              songModel.name,
                               style: const TextStyle(
                                 fontSize: 21,
                                 fontWeight: FontWeight.w500,
@@ -213,39 +194,5 @@ class SongDetailTab extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  // ===========================================================================
-  // Non-shared code below because we're using different scaffolds.
-  // ===========================================================================
-
-  Widget _buildAndroid(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(song)),
-      body: _buildBody(context),
-    );
-  }
-
-  Widget _buildIos(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: Text(song),
-        previousPageTitle: 'Songs',
-      ),
-      child: _buildBody(context),
-    );
-  }
-
-  @override
-  Widget build(context) {
-    switch (defaultTargetPlatform) {
-      case TargetPlatform.android:
-        return _buildAndroid(context);
-      case TargetPlatform.iOS:
-        return _buildIos(context);
-      default:
-        assert(false, 'Unexpected platform $defaultTargetPlatform');
-        return const SizedBox.shrink();
-    }
   }
 }

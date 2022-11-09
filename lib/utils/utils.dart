@@ -5,6 +5,7 @@
 import 'dart:math';
 
 import 'package:english_words/english_words.dart';
+import 'package:flutter/foundation.dart';
 // ignore: implementation_imports
 import 'package:flutter/material.dart';
 
@@ -77,6 +78,10 @@ List<String> getRandomNames(int amount) {
       .toList();
 }
 
+String getRandomName() {
+  return capitalizePair(
+      wordPairIterator.elementAt(_random.nextInt(wordPairIterator.length)));
+}
 
 String capitalize(String word) {
   return '${word[0].toUpperCase()}${word.substring(1).toLowerCase()}';
@@ -84,4 +89,29 @@ String capitalize(String word) {
 
 String capitalizePair(WordPair pair) {
   return '${capitalize(pair.first)} ${capitalize(pair.second)}';
+}
+
+Future<void> runAfterDelay(
+    {required Function function, int seconds = 2}) async {
+  return Future.delayed(
+    // This is just an arbitrary delay that simulates some network activity.
+    Duration(seconds: seconds),
+    (() {
+      function();
+    }),
+  );
+}
+
+void togglePlatform() {
+  if (defaultTargetPlatform == TargetPlatform.iOS) {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+  } else {
+    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+  }
+
+  // This rebuilds the application. This should obviously never be
+  // done in a real app but it's done here since this app
+  // unrealistically toggles the current platform for demonstration
+  // purposes.
+  WidgetsBinding.instance.reassembleApplication();
 }

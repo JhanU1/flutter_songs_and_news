@@ -27,9 +27,7 @@ class NewListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: itemsLength,
-      itemBuilder: (BuildContext context, int index) {
-        return NewWidget(newModel: _items[index]);
-      },
+      itemBuilder: (context, index) => NewWidget(newModel: _items[index]),
     );
   }
 }
