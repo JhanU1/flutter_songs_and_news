@@ -5,11 +5,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:platform_design/new/ui/pages/news_page.dart';
+import 'package:platform_design/song/ui/pages/song_page.dart';
+import 'package:platform_design/ui/icons/icons_ios.dart';
 
-import 'ui/pages/news_tab.dart';
-import 'ui/pages/profile_tab.dart';
-import 'ui/pages/songs_tab.dart';
-import 'ui/widgets/android_drawer.dart';
+import 'profile/ui/pages/profile_page.dart';
 
 void main() => runApp(const MyAdaptingApp());
 
@@ -69,9 +69,8 @@ class _PlatformAdaptingHomePageState extends State<PlatformAdaptingHomePage> {
   // all 4 possible tabs. This drawer is injected into the songs tab which is
   // actually building the scaffold around the drawer.
   Widget _buildAndroidHomePage(BuildContext context) {
-    return SongsTab(
+    return SongPage(
       key: songsTabKey,
-      androidDrawer: AndroidDrawer(),
     );
   }
 
@@ -88,16 +87,16 @@ class _PlatformAdaptingHomePageState extends State<PlatformAdaptingHomePage> {
       tabBar: CupertinoTabBar(
         items: const [
           BottomNavigationBarItem(
-            label: SongsTab.title,
-            icon: SongsTab.iosIcon,
+            label: SongPage.title,
+            icon: Icon(IconsIos.songIcon),
           ),
           BottomNavigationBarItem(
-            label: NewsTab.title,
-            icon: NewsTab.iosIcon,
+            label: NewsPage.title,
+            icon: Icon(IconsIos.newsIcon),
           ),
           BottomNavigationBarItem(
-            label: ProfileTab.title,
-            icon: ProfileTab.iosIcon,
+            label: ProfilePage.title,
+            icon: Icon(IconsIos.profileIcon),
           ),
         ],
       ),
@@ -105,18 +104,18 @@ class _PlatformAdaptingHomePageState extends State<PlatformAdaptingHomePage> {
         switch (index) {
           case 0:
             return CupertinoTabView(
-              defaultTitle: SongsTab.title,
-              builder: (context) => SongsTab(key: songsTabKey),
+              defaultTitle: SongPage.title,
+              builder: (context) => SongPage(key: songsTabKey),
             );
           case 1:
             return CupertinoTabView(
-              defaultTitle: NewsTab.title,
-              builder: (context) => const NewsTab(),
+              defaultTitle: NewsPage.title,
+              builder: (context) => const NewsPage(),
             );
           case 2:
             return CupertinoTabView(
-              defaultTitle: ProfileTab.title,
-              builder: (context) => const ProfileTab(),
+              defaultTitle: ProfilePage.title,
+              builder: (context) => const ProfilePage(),
             );
           default:
             assert(false, 'Unexpected tab');

@@ -10,10 +10,11 @@ class SettingWidget extends StatefulWidget {
 }
 
 class _SettingWidgetState extends State<SettingWidget> {
+  final List<Setting> _items = Setting.defaultSettings();
   @override
   Widget build(BuildContext context) {
     return ListView(
-        children: Setting.defaultSettings()
+        children: _items
             .map((setting) => ListTile(
                   title: Text(setting.title),
                   trailing: Switch.adaptive(

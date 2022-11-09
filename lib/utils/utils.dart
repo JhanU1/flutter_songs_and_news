@@ -79,8 +79,7 @@ List<String> getRandomNames(int amount) {
 }
 
 String getRandomName() {
-  return capitalizePair(
-      wordPairIterator.elementAt(_random.nextInt(wordPairIterator.length)));
+  return capitalizePair(wordPairIterator.first);
 }
 
 String capitalize(String word) {

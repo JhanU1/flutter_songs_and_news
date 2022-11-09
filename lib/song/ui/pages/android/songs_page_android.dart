@@ -4,10 +4,10 @@ import 'package:platform_design/ui/widgets/android_drawer.dart';
 import 'package:platform_design/utils/utils.dart';
 
 class SongsPageAndroid extends StatefulWidget {
-  const SongsPageAndroid({super.key});
+  const SongsPageAndroid({super.key, required this.title, required this.iconPage});
 
-  static const title = 'Songs';
-  static const icon = Icon(Icons.music_note);
+  final String title;
+  final IconData iconPage;
 
   @override
   State<SongsPageAndroid> createState() => _SongsPageAndroidState();
@@ -20,7 +20,7 @@ class _SongsPageAndroidState extends State<SongsPageAndroid> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(SongsPageAndroid.title),
+        title: Text(widget.title),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -36,11 +36,13 @@ class _SongsPageAndroidState extends State<SongsPageAndroid> {
       drawer: AndroidDrawer(),
       body: RefreshIndicator(
           key: _androidRefreshKey,
-          onRefresh: () => runAfterDelay(function: () {
-                setState(() {
-                  // Refresh the list
-                });
-              }),
+          onRefresh: () {
+            return runAfterDelay(function: () {
+              setState(() {
+                // Refresh the list
+              });
+            });
+          },
           child: SongListWidget()),
     );
   }

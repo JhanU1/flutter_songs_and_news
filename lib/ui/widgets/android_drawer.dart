@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:platform_design/profile/ui/pages/android/profile_page_android.dart';
+import 'package:platform_design/settings/ui/pages/android/settings_page_android.dart';
+import 'package:platform_design/song/ui/pages/android/songs_page_android.dart';
 
-import '../pages/news_tab.dart';
-import '../pages/profile_tab.dart';
-import '../pages/settings_tab.dart';
-import '../pages/songs_tab.dart';
+import '../../new/ui/pages/android/news_page_android.dart';
+import '../../new/ui/pages/news_page.dart';
+import '../../profile/ui/pages/profile_page.dart';
+import '../../settings/ui/pages/settings_page.dart';
+import '../../song/ui/pages/song_page.dart';
+import '../icons/icons_android.dart';
 
 class AndroidDrawer extends StatelessWidget {
   @override
@@ -24,37 +29,39 @@ class AndroidDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: SongsTab.androidIcon,
-            title: const Text(SongsTab.title),
+            leading: const Icon(IconsAndroid.songIcon),
+            title: const Text(SongPage.title),
             onTap: () {
               Navigator.pop(context);
             },
           ),
           ListTile(
-            leading: NewsTab.androidIcon,
-            title: const Text(NewsTab.title),
+            leading: const Icon(IconsAndroid.newsIcon),
+            title: const Text(NewsPage.title),
             onTap: () {
               Navigator.pop(context);
               Navigator.push<void>(context,
-                  MaterialPageRoute(builder: (context) => const NewsTab()));
+                  MaterialPageRoute(builder: (context) => const NewsPage()));
             },
           ),
           ListTile(
-            leading: ProfileTab.androidIcon,
-            title: const Text(ProfileTab.title),
+            leading: const Icon(IconsAndroid.profileIcon),
+            title: const Text(ProfilePage.title),
             onTap: () {
               Navigator.pop(context);
               Navigator.push<void>(context,
-                  MaterialPageRoute(builder: (context) => const ProfileTab()));
+                  MaterialPageRoute(builder: (context) => const ProfilePage()));
             },
           ),
           ListTile(
-            leading: SettingsTab.androidIcon,
-            title: const Text(SettingsTab.title),
+            leading: const Icon(IconsAndroid.settingsIcon),
+            title: const Text(SettingsPage.title),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push<void>(context,
-                  MaterialPageRoute(builder: (context) => const SettingsTab()));
+              Navigator.push<void>(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SettingsPage()));
             },
           ),
         ],

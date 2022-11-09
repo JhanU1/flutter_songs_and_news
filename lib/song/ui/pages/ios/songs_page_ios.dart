@@ -3,7 +3,9 @@ import 'package:platform_design/song/ui/widgets/song_list_widget.dart';
 import 'package:platform_design/utils/utils.dart';
 
 class SongsPageIos extends StatefulWidget {
-  const SongsPageIos({super.key});
+  const SongsPageIos({super.key, required this.title, required this.iconPage});
+  final String title;
+  final IconData iconPage;
   @override
   State<SongsPageIos> createState() => _SongsPageIosState();
 }
@@ -13,8 +15,11 @@ class _SongsPageIosState extends State<SongsPageIos> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const CupertinoSliverNavigationBar(
-          trailing: CupertinoButton(
+        CupertinoSliverNavigationBar(
+          middle: Row(
+            children: [Text(widget.title), Icon(widget.iconPage)],
+          ),
+          trailing: const CupertinoButton(
             padding: EdgeInsets.zero,
             onPressed: togglePlatform,
             child: Icon(CupertinoIcons.shuffle),

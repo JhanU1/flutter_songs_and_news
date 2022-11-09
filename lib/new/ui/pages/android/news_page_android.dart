@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 import '../../widgets/new_list_widget.dart';
 
 class NewsPageAndroid extends StatelessWidget {
-  const NewsPageAndroid({super.key});
-  static const title = "News";
-  static const icon = Icon(Icons.library_books);
+  const NewsPageAndroid(
+      {super.key, required this.title, required this.iconPage});
+  final String title;
+  final IconData iconPage;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          children: const [Text(title), icon],
+          children: [
+            Text(title),
+            Icon(iconPage),
+          ],
         ),
       ),
       body: NewListWidget(),
