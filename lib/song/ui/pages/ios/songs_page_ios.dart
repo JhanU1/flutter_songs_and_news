@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:platform_design/song/ui/widgets/song_list_widget.dart';
 import 'package:platform_design/utils/utils.dart';
 
+import '../../../../ui/utils/utils.dart';
+
 class SongsPageIos extends StatefulWidget {
   const SongsPageIos({super.key, required this.title, required this.iconPage});
   final String title;

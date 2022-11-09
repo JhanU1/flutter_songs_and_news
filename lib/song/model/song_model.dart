@@ -4,5 +4,10 @@ class Song {
   int id;
   String name;
   MaterialColor color;
-  Song({required this.name, required this.color, required this.id});
+  String linkImage;
+  Song(
+      {required this.name,
+      required this.color,
+      required this.id,
+      required this.linkImage});
 }

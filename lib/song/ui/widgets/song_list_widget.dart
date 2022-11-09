@@ -6,12 +6,13 @@ import '../../../utils/utils.dart';
 import '../../model/song_model.dart';
 
 class SongListWidget extends StatelessWidget {
-  SongListWidget({super.key, this.itemsLength = 20}) {
+  SongListWidget({super.key, this.itemsLength = 20, this.heightItem}) {
     _items = generateRandomSongs();
   }
 
   late final List<Song> _items;
   final int itemsLength;
+  final double? heightItem;
 
   List<Song> generateRandomSongs() {
     return List.generate(itemsLength, (index) {
@@ -19,6 +20,7 @@ class SongListWidget extends StatelessWidget {
         id: index,
         name: getRandomName(),
         color: getRandomColor(),
+        linkImage: getUriForRandomImage(),
       );
     });
   }
@@ -30,11 +32,12 @@ class SongListWidget extends StatelessWidget {
         return ListView.builder(
             itemCount: itemsLength,
             itemBuilder: (context, index) =>
-                SongWidget(songModel: _items[index]));
+                SongWidget(songModel: _items[index], height: heightItem));
       case TargetPlatform.iOS:
         return SliverList(
           delegate: SliverChildBuilderDelegate(
-            ((context, index) => SongWidget(songModel: _items[index])),
+            ((context, index) =>
+                SongWidget(songModel: _items[index], height: heightItem)),
             childCount: itemsLength,
           ),
         );

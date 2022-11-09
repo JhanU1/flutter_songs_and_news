@@ -3,6 +3,8 @@ import 'package:platform_design/song/ui/widgets/song_list_widget.dart';
 import 'package:platform_design/ui/widgets/android_drawer.dart';
 import 'package:platform_design/utils/utils.dart';
 
+import '../../../../ui/utils/utils.dart';
+
 class SongsPageAndroid extends StatefulWidget {
   const SongsPageAndroid(
       {super.key, required this.title, required this.iconPage});

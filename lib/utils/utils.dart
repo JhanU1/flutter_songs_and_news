@@ -5,8 +5,6 @@
 import 'dart:math';
 
 import 'package:english_words/english_words.dart';
-import 'package:flutter/foundation.dart';
-// ignore: implementation_imports
 import 'package:flutter/material.dart';
 
 // This file has a number of platform-agnostic non-Widget utility functions.
@@ -101,16 +99,8 @@ Future<void> runAfterDelay(
   );
 }
 
-void togglePlatform() {
-  if (defaultTargetPlatform == TargetPlatform.iOS) {
-    debugDefaultTargetPlatformOverride = TargetPlatform.android;
-  } else {
-    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-  }
-
-  // This rebuilds the application. This should obviously never be
-  // done in a real app but it's done here since this app
-  // unrealistically toggles the current platform for demonstration
-  // purposes.
-  WidgetsBinding.instance.reassembleApplication();
+String getUriForRandomImage() {
+  final int width = _random.nextInt(291) + 10;
+  final int height = _random.nextInt(491) + 10;
+  return 'https://picsum.photos/$width/$height';
 }

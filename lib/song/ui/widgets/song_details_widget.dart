@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:platform_design/song/ui/widgets/song_list_widget.dart';
 import 'package:platform_design/ui/widgets/pressable_card.dart';
 
 import '../../model/song_model.dart';
 
 class SongDetailsWidget extends StatelessWidget {
-  const SongDetailsWidget({super.key, required this.songModel});
+  const SongDetailsWidget(
+      {super.key,
+      required this.songModel,
+      this.lengthItemsRecommended = 8,
+      this.heightItemRecommended = 80});
   final Song songModel;
+  final int lengthItemsRecommended;
+  final double heightItemRecommended;
   @override
   Widget build(BuildContext context) {
     Animation<double> heroAnimation = const AlwaysStoppedAnimation(1);
@@ -96,99 +103,28 @@ class SongDetailsWidget extends StatelessWidget {
               );
             },
           ),
+          SizedBox(
+              height: MediaQuery.of(context).size.height * 0.30,
+              child: Image.network(songModel.linkImage)),
           const Divider(
             height: 0,
             color: Colors.grey,
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  return const Padding(
-                    padding: EdgeInsets.only(left: 15, top: 16, bottom: 8),
-                    child: Text(
-                      'You might also like:',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  );
-                }
-                // Just a bunch of boxes that simulates loading song choices.
-                return SizedBox(
-                  height: 95,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                    child: Row(
-                      children: [
-                        Container(
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
-                          width: 130,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 12),
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 9,
-                                margin: const EdgeInsets.only(right: 60),
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .color,
-                              ),
-                              Container(
-                                height: 9,
-                                margin:
-                                    const EdgeInsets.only(right: 20, top: 8),
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .color,
-                              ),
-                              Container(
-                                height: 9,
-                                margin:
-                                    const EdgeInsets.only(right: 40, top: 8),
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .color,
-                              ),
-                              Container(
-                                height: 9,
-                                margin:
-                                    const EdgeInsets.only(right: 80, top: 8),
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .color,
-                              ),
-                              Container(
-                                height: 9,
-                                margin:
-                                    const EdgeInsets.only(right: 50, top: 8),
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .color,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
+          const Padding(
+            padding: EdgeInsets.only(left: 15, top: 16, bottom: 8),
+            child: Text(
+              'You might also like:',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
+          Expanded(
+              child: SongListWidget(
+            itemsLength: lengthItemsRecommended,
+            heightItem: heightItemRecommended,
+          )),
         ],
       ),
     );
