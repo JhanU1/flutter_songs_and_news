@@ -40,23 +40,22 @@ class AuthenticationService {
     await _storage.deleteUserLogged();
   }
 
-  Future<User> registerUser(String username, Map<String, dynamic> data) async {
+  Future<void> registerUser(String username, Map<String, dynamic> data) async {
     try {
-      final user = await _storage.readUserByUserName(username);
       await _storage.createUser(username, data);
-      return user;
+
     } catch (e) {
       return Future.error(e);
     }
   }
 
-  Future<User> updateUser(String username, Map<String, dynamic> data) async {
+  Future<User?> updateUser(String username, Map<String, dynamic> data) async {
     try {
       final user = await _storage.readUserByUserName(username);
       await _storage.updateUser(username, data);
       return user;
     } catch (e) {
-      return Future.error(e);
+      return null;
     }
   }
 }

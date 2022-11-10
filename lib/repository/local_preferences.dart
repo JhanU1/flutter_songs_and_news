@@ -3,7 +3,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocalPreferences {
 // Singleton
   static final LocalPreferences _instance = LocalPreferences._internal();
-  factory LocalPreferences() => _instance;
+
+  factory LocalPreferences() {
+    return _instance;
+  }
+
   LocalPreferences._internal();
 
   Future<T?> read<T>(String key) async {

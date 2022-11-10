@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:platform_design/repository/local_preferences.dart';
 import 'package:platform_design/settings/model/setting_model.dart';
 
@@ -15,9 +17,10 @@ class StorageSettings {
   StorageSettings._internal();
 
   final LocalPreferences _storage = LocalPreferences();
-  late final List<String> _settings;
+  List<String>? _settings;
   final AuthenticationService _auth = AuthenticationService();
   User? user;
+  List<String> get settings => _settings ?? [];
 
   String? pathName() {
     if (user != null) {
@@ -30,8 +33,8 @@ class StorageSettings {
   Future<void> init() async {
     user = await _auth.readUserLogged();
     final List<String> defaultSettings = Setting.defaultSettings()
-            .map<String>((setting) => setting.toJson().toString())
-            .toList();
+        .map<String>((setting) => jsonEncode(setting.toJson()))
+        .toList();
     if (pathName() != null) {
       final List<String>? settings = await _storage.read(pathName()!);
       if (settings == null) {
@@ -40,14 +43,14 @@ class StorageSettings {
       } else {
         _settings = settings;
       }
-    } 
+    }
   }
 
   Future<void> updateSetting(Setting setting) async {
-    final settingF = _settings.firstWhere(
+    final settingF = _settings!.firstWhere(
         (element) => Setting.fromJsonString(element).title == setting.title);
-    final indexOfSetting = _settings.indexOf(settingF);
-    _settings[indexOfSetting] = setting.toJson().toString();
+    final indexOfSetting = _settings!.indexOf(settingF);
+    _settings![indexOfSetting] = jsonEncode(setting.toJson());
     await _storage.save(pathName()!, _settings);
   }
 }

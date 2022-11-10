@@ -10,6 +10,10 @@ class SignInPageAndroid extends StatelessWidget {
         appBar: AppBar(),
         body: Container(
             margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: LoginWidget()));
+            child: ListView(
+              children: [
+                LoginWidget(),
+              ],
+            )));
   }
 }

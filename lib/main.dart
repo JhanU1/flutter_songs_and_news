@@ -5,19 +5,26 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:platform_design/user/controllers/user_controller.dart';
 
 import 'ui/pages/navigation_page.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Get.put(UserController());
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(context) {
+    
     // Either Material or Cupertino widgets work in either Material or Cupertino
     // Apps.
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Adaptive Music App',
       theme: ThemeData(
         // Use the green theme for Material widgets.

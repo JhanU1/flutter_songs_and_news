@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:platform_design/user/controllers/user_controller.dart';
 import 'package:platform_design/user/ui/pages/sign_up_page.dart';
 
 import '../../../ui/widgets/button_widget.dart';
+import '../../../ui/widgets/custom_snackbar.dart';
 import '../../../ui/widgets/text_form_fiel.dart';
 
 class LoginWidget extends StatelessWidget {
@@ -9,8 +12,25 @@ class LoginWidget extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _userNameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final UserController _userController = Get.find();
 
-  void handleButton() {}
+  Future<void> handleButton() async {
+    try {
+      await _userController.login(
+          userName: _userNameController.text,
+          password: _passwordController.text);
+      showCustomSnackbar(
+        title: 'User logged',
+        message: 'User logged successfully',
+      );
+    } catch (e) {
+      showCustomSnackbar(
+        title: "Error",
+        message: e.toString(),
+        type: CustomSnackbarType.error,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,17 +80,14 @@ class LoginWidget extends StatelessWidget {
                 ),
               ],
             ),
-            Text("¿Do you have an account?"),
+            const Text("¿Do you have an account?"),
             Row(
               children: [
                 Expanded(
                   child: WidgetButton(
                       text: "Sing Up",
                       onPressed: () {
-                        Navigator.push<void>(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignUpPage()));
+                        Get.to<dynamic>(() => const SignUpPage());
                       },
                       typeMain: false),
                 ),

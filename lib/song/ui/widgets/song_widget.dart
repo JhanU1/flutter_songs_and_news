@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:platform_design/song/ui/widgets/song_details_widget.dart';
 import 'package:platform_design/ui/widgets/pressable_card.dart';
 
@@ -24,9 +25,9 @@ class SongWidget extends StatelessWidget {
       animation: heroAnimation,
       builder: (context, child) {
         return PressableCard(
-          onPressed: () => Navigator.of(context, rootNavigator: true)
-              .push<void>(MaterialPageRoute(
-                  builder: (context) => SongDetailsPage(songModel: songModel))),
+          onPressed: () => Get.to<dynamic>(
+              () => SongDetailsPage(songModel: songModel),
+              preventDuplicates: false),
           color: color,
           flattenAnimation: heroAnimation,
           child: Stack(

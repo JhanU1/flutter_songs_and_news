@@ -15,17 +15,20 @@ class StorageUser {
   final LocalPreferences _storage = LocalPreferences();
 
   Future<void> init() async {
-    final List<String>? users = await _storage.read('users');
+    //  await _storage.delete<List>("users");
+    final List<String>? users =
+        await _storage.read<List>('users') as List<String>?;
     if (users == null) {
       final user = <String, dynamic>{
         "name": "Johan",
         "lastName": "Hurtado",
         "userName": "Johanl",
         "password": "123",
-        "email": "admin@admin.com",
         "description": "I'm the admin",
       };
-      await _storage.save('users', [user.toString()]);
+      print(jsonEncode(user));
+      print(jsonDecode(jsonEncode(user)));
+      await _storage.save<List>('users', <String>[jsonEncode(user)]);
     }
   }
 
@@ -39,7 +42,7 @@ class StorageUser {
   }
 
   Future<void> saveUserLogged(String userName) async {
-    await _storage.save('userLogged', userName);
+    await _storage.save<String>('userLogged', userName);
   }
 
   Future<void> deleteUserLogged() async {
@@ -48,15 +51,15 @@ class StorageUser {
 
   Future<void> createUser(String userName, Map<String, dynamic> data) async {
     List<String> stringUsers =
-        await _storage.read<List<String>>("users") as List<String>;
+        await _storage.read<List>("users") as List<String>;
     final users = stringUsers
         .map<User?>((stringUser) => User.fromJsonString(stringUser))
         .toList();
     final user = users.firstWhere((user) => user!.userName == userName,
         orElse: () => null);
     if (user == null) {
-      stringUsers.add(data.toString());
-      await _storage.save("users", users);
+      stringUsers.add(jsonEncode(data));
+      await _storage.save<List>("users", stringUsers);
     } else {
       return Future.error('User already exists');
     }
@@ -64,7 +67,8 @@ class StorageUser {
 
   Future<User> readUserByUserName(String userName) async {
     List<String> stringUsers =
-        await _storage.read<List<String>>("users") as List<String>;
+        await _storage.read<List>("users") as List<String>;
+    print(stringUsers);
     final users =
         stringUsers.map<User?>((stringUser) => User.fromJsonString(stringUser));
     final user = users.firstWhere((user) => user!.userName == userName,
@@ -78,7 +82,7 @@ class StorageUser {
 
   Future<void> updateUser(String userName, Map<String, dynamic> data) async {
     List<String> stringUsers =
-        await _storage.read<List<String>>("users") as List<String>;
+        await _storage.read<List>("users") as List<String>;
     final mapUsers = stringUsers
         .map<Map<String, dynamic>>(
             (stringUser) => json.decode(stringUser) as Map<String, dynamic>)
@@ -90,8 +94,8 @@ class StorageUser {
       for (final key in data.keys) {
         user[key] = data[key] ?? user[key];
       }
-      stringUsers[index] = user.toString();
-      await _storage.save("users", stringUsers);
+      stringUsers[index] = jsonEncode(user);
+      await _storage.save<List>("users", stringUsers);
     } else {
       return Future.error('User does not exists');
     }

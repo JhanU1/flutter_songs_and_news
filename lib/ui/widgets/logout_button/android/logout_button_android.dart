@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:platform_design/user/controllers/user_controller.dart';
 
 class LogOutButtonAndroid extends StatelessWidget {
   static const _logoutMessage = Text(
@@ -21,12 +23,15 @@ class LogOutButtonAndroid extends StatelessWidget {
               content: _logoutMessage,
               actions: [
                 TextButton(
-                  child: const Text('Got it'),
-                  onPressed: () => Navigator.pop(context),
-                ),
+                    child: const Text('Got it'),
+                    onPressed: () async {
+                      UserController userController = Get.find();
+                      await userController.logout();
+                      Get.close(2);
+                    }),
                 TextButton(
                   child: const Text('Cancel'),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => Get.back<dynamic>(),
                 ),
               ],
             );

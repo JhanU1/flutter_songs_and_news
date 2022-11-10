@@ -16,7 +16,7 @@ class User {
   });
 
   factory User.fromJsonString(String jsonString) {
-    final map = json.decode(jsonString) as Map<String, dynamic>;
+    final map = jsonDecode(jsonString) as Map<String, dynamic>;
     return User(
       name: map['name'] as String,
       lastName: map['lastName'] as String,
@@ -34,7 +34,7 @@ class User {
       'password': password,
       'description': description,
     };
-    return map.toString();
+    return jsonEncode(map);
   }
 
   @override

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:platform_design/ui/widgets/text_form_fiel.dart';
 
 import '../../../ui/widgets/button_widget.dart';
+import '../../../ui/widgets/custom_snackbar.dart';
+import '../../controllers/user_controller.dart';
 
 class UserForm extends StatelessWidget {
-  UserForm({Key? key}) : super(key: key);
+  UserForm({super.key});
+
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _lastNameController = TextEditingController();
@@ -12,8 +16,22 @@ class UserForm extends StatelessWidget {
   final _passwordController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final UserController _userController = Get.find();
 
-  Future<void> handlerButton() async {}
+  Future<void> handlerButton() async {
+    await _userController.register(
+      name: _nameController.text,
+      lastName: _lastNameController.text,
+      userName: _userNameController.text,
+      password: _passwordController.text,
+      description: _descriptionController.text,
+    );
+    Get.back<dynamic>();
+    showCustomSnackbar(
+      title: 'User added',
+      message: 'User added successfully',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +107,11 @@ class UserForm extends StatelessWidget {
                       try {
                         await handlerButton();
                       } catch (e) {
-                        print(e);
+                        showCustomSnackbar(
+                          title: "Error",
+                          message: e.toString(),
+                          type: CustomSnackbarType.error,
+                        );
                       }
                     }
                   },

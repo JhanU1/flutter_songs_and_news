@@ -7,6 +7,8 @@ class SignUpPageIos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        navigationBar: const CupertinoNavigationBar(), child: UserForm());
+        navigationBar: const CupertinoNavigationBar(),
+        child:
+            CustomScrollView(slivers: [SliverToBoxAdapter(child: UserForm())]));
   }
 }
