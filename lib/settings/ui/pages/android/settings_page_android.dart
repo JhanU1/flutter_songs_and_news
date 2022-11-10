@@ -14,7 +14,7 @@ class SettingsPageAndroid extends StatelessWidget {
           children: [Text(title), Icon(iconPage)],
         ),
       ),
-      body: const SettingWidget(),
+      body:  SettingWidget(),
     );
   }
 }

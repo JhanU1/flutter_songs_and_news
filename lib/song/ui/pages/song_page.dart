@@ -12,10 +12,9 @@ class SongPage extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return const SongsPageAndroid(
-            title: title, iconPage: IconsAndroid.songIcon);
+        return SongsPageAndroid(title: title, iconPage: IconsAndroid.songIcon);
       case TargetPlatform.iOS:
-        return const SongsPageIos(
+        return SongsPageIos(
           title: title,
           iconPage: IconsIos.songIcon,
         );

@@ -18,7 +18,7 @@ class SettingsPageIos extends StatelessWidget {
           ],
         ),
       ),
-      child: const SettingWidget(),
+      child: SettingWidget(),
     );
   }
 }
