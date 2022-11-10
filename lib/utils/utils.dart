@@ -104,3 +104,7 @@ String getUriForRandomImage() {
   final int height = _random.nextInt(491) + 10;
   return 'https://picsum.photos/$width/$height';
 }
+
+String getUriForRandomImageWithSize(int width, int height) {
+  return 'https://picsum.photos/$width/$height';
+}

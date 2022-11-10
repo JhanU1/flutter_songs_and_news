@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:platform_design/new/ui/pages/new_details_page.dart';
 
 import '../../model/new_model.dart';
 
@@ -22,7 +24,9 @@ class NewWidget extends StatelessWidget {
         child: InkWell(
           // Make it splash on Android. It would happen automatically if this
           // was a real card but this is just a demo. Skip the splash on iOS.
-          onTap: defaultTargetPlatform == TargetPlatform.iOS ? null : () {},
+          onTap: () {
+            Get.to<dynamic>(() => NewDetailsPage(newModel: newModel));
+          },
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Row(

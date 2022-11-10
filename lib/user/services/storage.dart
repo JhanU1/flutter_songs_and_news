@@ -26,8 +26,6 @@ class StorageUser {
         "password": "123",
         "description": "I'm the admin",
       };
-      print(jsonEncode(user));
-      print(jsonDecode(jsonEncode(user)));
       await _storage.save<List>('users', <String>[jsonEncode(user)]);
     }
   }
@@ -68,7 +66,6 @@ class StorageUser {
   Future<User> readUserByUserName(String userName) async {
     List<String> stringUsers =
         await _storage.read<List>("users") as List<String>;
-    print(stringUsers);
     final users =
         stringUsers.map<User?>((stringUser) => User.fromJsonString(stringUser));
     final user = users.firstWhere((user) => user!.userName == userName,

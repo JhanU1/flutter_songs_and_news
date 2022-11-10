@@ -5,14 +5,14 @@ import 'package:platform_design/new/ui/widgets/new_widget.dart';
 import '../../../utils/utils.dart';
 import '../../model/new_model.dart';
 
-// ignore: must_be_immutable
+
 class NewListWidget extends StatelessWidget {
   NewListWidget({super.key, this.itemsLength = 20}) {
     _items = generateRandomNews();
   }
 
   final int itemsLength;
-  late List<New> _items;
+  late final List<New> _items;
 
   List<New> generateRandomNews() {
     return List.generate(itemsLength, (index) {
