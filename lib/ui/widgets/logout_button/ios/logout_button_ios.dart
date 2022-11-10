@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+
+import '../../../../user/controllers/user_controller.dart';
 
 class LogOutButtonIos extends StatelessWidget {
   static const _logoutMessage = Text(
@@ -23,17 +26,21 @@ class LogOutButtonIos extends StatelessWidget {
               actions: [
                 CupertinoActionSheetAction(
                   isDestructiveAction: true,
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => Get.back<dynamic>(),
                   child: const Text('Reprogram the night man'),
                 ),
                 CupertinoActionSheetAction(
                   child: const Text('Got it'),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () async {
+                    UserController userController = Get.find();
+                    await userController.logout();
+                    Get.close(1);
+                  },
                 ),
               ],
               cancelButton: CupertinoActionSheetAction(
                 isDefaultAction: true,
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => Get.back<dynamic>(),
                 child: const Text('Cancel'),
               ),
             );

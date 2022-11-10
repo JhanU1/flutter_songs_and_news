@@ -73,7 +73,7 @@ class LoginWidget extends StatelessWidget {
                         final form = _formKey.currentState;
                         form!.save();
                         if (form.validate()) {
-                          handleButton();
+                          await handleButton();
                         }
                       },
                       typeMain: true),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'pressable_card.dart';
 
@@ -88,11 +89,11 @@ class PreferenceCard extends StatelessWidget {
                   actions: [
                     TextButton(
                       child: const Text('OK'),
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => Get.back<dynamic>(),
                     ),
                     TextButton(
                       child: const Text('CANCEL'),
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => Get.back<dynamic>(),
                     ),
                   ],
                 );

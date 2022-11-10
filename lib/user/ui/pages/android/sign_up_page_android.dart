@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:platform_design/user/ui/widgets/user_form.dart';
 
 class SignUpPageAndroid extends StatelessWidget {
@@ -12,7 +13,7 @@ class SignUpPageAndroid extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            Get.back<dynamic>();
           },
         ),
       ),
@@ -22,7 +23,6 @@ class SignUpPageAndroid extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             Expanded(
               child: ListView(
                 controller: ScrollController(),

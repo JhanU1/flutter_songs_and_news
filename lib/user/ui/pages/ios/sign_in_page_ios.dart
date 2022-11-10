@@ -7,10 +7,11 @@ class SignInPageIos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(),
-      child:
-          CustomScrollView(slivers: [SliverToBoxAdapter(child: LoginWidget())]),
+    return Container(
+      margin: const EdgeInsets.only(top: 100),
+      child: CustomScrollView(slivers: [
+        SliverToBoxAdapter(child: LoginWidget()),
+      ]),
     );
   }
 }

@@ -18,9 +18,9 @@ class NavegationPage extends StatelessWidget {
   Future<void> changeLoading() async {
     Future.delayed(const Duration(seconds: 2), () {
       loading.value = false;
-      // if (defaultTargetPlatform == TargetPlatform.android) {
-      //   togglePlatform();
-      // }
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        togglePlatform();
+      }
     });
   }
 
@@ -28,11 +28,10 @@ class NavegationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (loading.value) {
-        return LoadingPage();
+        return const LoadingPage();
       } else {
         return GetX<UserController>(
           builder: (_) {
-            print("User: ${_.currentUser}");
             if (_.currentUser.value == null) {
               return const SignInPage();
             } else {

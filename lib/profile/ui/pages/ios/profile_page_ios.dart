@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:platform_design/profile/ui/widgets/profile_widget.dart';
 import 'package:platform_design/settings/ui/pages/settings_page.dart';
 import 'package:platform_design/ui/icons/icons_ios.dart';
@@ -25,13 +26,7 @@ class ProfilePageIos extends StatelessWidget {
           onPressed: () {
             // This pushes the settings page as a full page modal dialog on top
             // of the tab bar and everything.
-            Navigator.of(context, rootNavigator: true).push<void>(
-              CupertinoPageRoute(
-                title: SettingsPage.title,
-                fullscreenDialog: true,
-                builder: (context) => const SettingsPage(),
-              ),
-            );
+            Get.to<dynamic>(() => const SettingsPage());
           },
         ),
       ),

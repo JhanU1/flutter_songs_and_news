@@ -36,9 +36,10 @@ class StorageSettings {
         .map<String>((setting) => jsonEncode(setting.toJson()))
         .toList();
     if (pathName() != null) {
-      final List<String>? settings = await _storage.read(pathName()!);
+      final List<String>? settings =
+          await _storage.read<List>(pathName()!) as List<String>?;
       if (settings == null) {
-        await _storage.save(pathName()!, defaultSettings);
+        await _storage.save<List>(pathName()!, defaultSettings);
         _settings = defaultSettings;
       } else {
         _settings = settings;
@@ -51,6 +52,6 @@ class StorageSettings {
         (element) => Setting.fromJsonString(element).title == setting.title);
     final indexOfSetting = _settings!.indexOf(settingF);
     _settings![indexOfSetting] = jsonEncode(setting.toJson());
-    await _storage.save(pathName()!, _settings);
+    await _storage.save<List>(pathName()!, _settings!);
   }
 }

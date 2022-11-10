@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:platform_design/song/model/song_model.dart';
 import 'package:platform_design/song/ui/widgets/song_details_widget.dart';
 
@@ -22,7 +23,7 @@ class SongDetailsPageAndroid extends StatelessWidget {
         title: Text(songModel.name),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Get.back<dynamic>(),
         ),
       ),
       body: Column(
