@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:platform_design/profile/ui/widgets/profile_widget.dart';
+import 'package:platform_design/user/ui/widgets/profile_widget.dart';
 
 class ProfilePageAndroid extends StatelessWidget {
   const ProfilePageAndroid(
@@ -17,7 +17,7 @@ class ProfilePageAndroid extends StatelessWidget {
           ],
         ),
       ),
-      body: const ProfileWidget(),
+      body: SingleChildScrollView(child: ProfileWidget()),
     );
   }
 }

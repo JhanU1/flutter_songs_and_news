@@ -27,8 +27,10 @@ class SongsPageAndroid extends StatelessWidget {
           actions: [
             IconButton(
               icon: const Icon(Icons.refresh),
-              onPressed: () async =>
-                  await _androidRefreshKey.currentState!.show(),
+              onPressed: () async {
+                await _androidRefreshKey.currentState!.show();
+                refresh.refresh();
+              },
             ),
             const IconButton(
               icon: Icon(Icons.shuffle),

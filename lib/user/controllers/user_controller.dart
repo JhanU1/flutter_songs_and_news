@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../profile/services/storage.dart';
+import '../services/preference_storage.dart';
 import '../../settings/services/storage.dart';
 import '../model/user_model.dart';
 import '../services/auth.dart';

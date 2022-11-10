@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:platform_design/profile/ui/pages/android/profile_page_android.dart';
-import 'package:platform_design/profile/ui/pages/ios/profile_page_ios.dart';
 import 'package:platform_design/ui/icons/icons_android.dart';
 import 'package:platform_design/ui/icons/icons_ios.dart';
+import 'package:platform_design/user/ui/pages/android/profile_page_android.dart';
+import 'package:platform_design/user/ui/pages/ios/profile_page_ios.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

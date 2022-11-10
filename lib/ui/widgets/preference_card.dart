@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../profile/services/storage.dart';
+import '../../user/services/preference_storage.dart';
 import 'pressable_card.dart';
 
 class PreferenceCard extends StatelessWidget {

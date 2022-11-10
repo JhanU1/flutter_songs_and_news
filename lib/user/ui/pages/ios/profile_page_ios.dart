@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:platform_design/profile/ui/widgets/profile_widget.dart';
-import 'package:platform_design/settings/ui/pages/settings_page.dart';
-import 'package:platform_design/ui/icons/icons_ios.dart';
+import 'package:platform_design/user/ui/widgets/profile_widget.dart';
+
+import '../../../../settings/ui/pages/settings_page.dart';
+import '../../../../ui/icons/icons_ios.dart';
 
 class ProfilePageIos extends StatelessWidget {
   const ProfilePageIos(
@@ -30,7 +31,7 @@ class ProfilePageIos extends StatelessWidget {
           },
         ),
       ),
-      child: const ProfileWidget(),
+      child: SingleChildScrollView(child: ProfileWidget()),
     );
   }
 }

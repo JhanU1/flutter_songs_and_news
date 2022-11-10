@@ -1,7 +1,7 @@
 import 'package:platform_design/repository/local_preferences.dart';
 
-import '../../user/model/user_model.dart';
-import '../../user/services/auth.dart';
+import '../model/user_model.dart';
+import 'auth.dart';
 
 class StoragePreference {
   // singleton

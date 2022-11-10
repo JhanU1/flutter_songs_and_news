@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../new/ui/pages/news_page.dart';
-import '../../profile/ui/pages/profile_page.dart';
+import '../../user/ui/pages/profile_page.dart';
 import '../../settings/ui/pages/settings_page.dart';
 import '../../song/ui/pages/song_page.dart';
 import '../icons/icons_android.dart';

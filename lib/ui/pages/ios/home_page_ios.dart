@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../new/ui/pages/news_page.dart';
-import '../../../profile/ui/pages/profile_page.dart';
+import '../../../user/ui/pages/profile_page.dart';
 import '../../../song/ui/pages/song_page.dart';
 import '../../icons/icons_ios.dart';
 
