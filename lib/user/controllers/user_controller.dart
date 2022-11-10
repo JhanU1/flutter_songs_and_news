@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../profile/services/storage.dart';
 import '../../settings/services/storage.dart';
 import '../model/user_model.dart';
 import '../services/auth.dart';
@@ -12,6 +13,7 @@ class UserController extends GetxController {
 
   final AuthenticationService _authenticationService = AuthenticationService();
   final StorageSettings _storageSettings = StorageSettings();
+  final StoragePreference _storagePreference = StoragePreference();
 
   Future<void> init() async {
     await _authenticationService.init();
@@ -19,6 +21,7 @@ class UserController extends GetxController {
       final user = await _authenticationService.readUserLogged();
       currentUser.value = user;
       await _storageSettings.init();
+      await _storagePreference.init();
     } catch (e) {
       currentUser.value = null;
     }
@@ -53,6 +56,7 @@ class UserController extends GetxController {
       final user = await _authenticationService.readUserLogged();
       currentUser.value = user;
       await _storageSettings.init();
+      await _storagePreference.init();
     } catch (e) {
       return Future.error(e);
     }

@@ -25,10 +25,10 @@ class ProfileWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const PreferenceCard(
+            PreferenceCard(
               header: 'MY INTENSITY PREFERENCE',
               content: '🔥',
-              preferenceChoices: [
+              preferenceChoices: const [
                 'Super heavy',
                 'Dial it to 11',
                 "Head bangin'",
@@ -36,10 +36,10 @@ class ProfileWidget extends StatelessWidget {
                 'My neighbor hates me',
               ],
             ),
-            const PreferenceCard(
+            PreferenceCard(
               header: 'CURRENT MOOD',
               content: '🤘🏾🚀',
-              preferenceChoices: [
+              preferenceChoices: const [
                 'Over the moon',
                 'Basking in sunlight',
                 'Hello fellow Martians',

@@ -3,10 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../profile/services/storage.dart';
 import 'pressable_card.dart';
 
 class PreferenceCard extends StatelessWidget {
-  const PreferenceCard({
+  PreferenceCard({
     required this.header,
     required this.content,
     required this.preferenceChoices,
@@ -16,7 +17,7 @@ class PreferenceCard extends StatelessWidget {
   final String header;
   final String content;
   final List<String> preferenceChoices;
-
+  final StoragePreference storagePreference = StoragePreference();
   @override
   Widget build(context) {
     return PressableCard(
@@ -65,7 +66,15 @@ class PreferenceCard extends StatelessWidget {
             showDialog<void>(
               context: context,
               builder: (context) {
-                int? selectedRadio = 1;
+                int? selectedRadio;
+                if (header == 'MY INTENSITY PREFERENCE') {
+                  selectedRadio =
+                      choices.indexOf(storagePreference.preferences[0]);
+                } else {
+                  selectedRadio =
+                      choices.indexOf(storagePreference.preferences[1]);
+                }
+
                 return AlertDialog(
                   contentPadding: const EdgeInsets.only(top: 12),
                   content: StatefulBuilder(
@@ -89,7 +98,17 @@ class PreferenceCard extends StatelessWidget {
                   actions: [
                     TextButton(
                       child: const Text('OK'),
-                      onPressed: () => Get.back<dynamic>(),
+                      onPressed: () {
+                        Get.back<dynamic>();
+                        if (selectedRadio != null) {
+                          if (header == 'MY INTENSITY PREFERENCE') {
+                            storagePreference
+                                .setIntensity(choices[selectedRadio!]);
+                          } else {
+                            storagePreference.setMood(choices[selectedRadio!]);
+                          }
+                        }
+                      },
                     ),
                     TextButton(
                       child: const Text('CANCEL'),
@@ -101,6 +120,13 @@ class PreferenceCard extends StatelessWidget {
             );
             return;
           case TargetPlatform.iOS:
+            int? initialItem;
+            if (header == 'MY INTENSITY PREFERENCE') {
+              initialItem = choices.indexOf(storagePreference.preferences[0]);
+            } else {
+              initialItem = choices.indexOf(storagePreference.preferences[1]);
+            }
+
             showCupertinoModalPopup<void>(
               context: context,
               builder: (context) {
@@ -112,7 +138,7 @@ class PreferenceCard extends StatelessWidget {
                     magnification: 1.1,
                     itemExtent: 40,
                     scrollController:
-                        FixedExtentScrollController(initialItem: 1),
+                        FixedExtentScrollController(initialItem: initialItem!),
                     children: List<Widget>.generate(choices.length, (index) {
                       return Center(
                         child: Text(
@@ -123,7 +149,13 @@ class PreferenceCard extends StatelessWidget {
                         ),
                       );
                     }),
-                    onSelectedItemChanged: (value) {},
+                    onSelectedItemChanged: (value) {
+                      if (header == 'MY INTENSITY PREFERENCE') {
+                        storagePreference.setIntensity(choices[value]);
+                      } else {
+                        storagePreference.setMood(choices[value]);
+                      }
+                    },
                   ),
                 );
               },

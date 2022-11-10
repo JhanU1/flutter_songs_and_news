@@ -18,9 +18,6 @@ class NavegationPage extends StatelessWidget {
   Future<void> changeLoading() async {
     Future.delayed(const Duration(seconds: 2), () {
       loading.value = false;
-      if (defaultTargetPlatform == TargetPlatform.android) {
-        togglePlatform();
-      }
     });
   }
 
