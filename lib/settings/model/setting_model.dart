@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Setting {
   String title;
   bool value;
@@ -10,6 +12,14 @@ class Setting {
   factory Setting.fromJson(Map<String, dynamic> json) {
     return Setting(
         title: json["title"] as String, value: json["value"] as bool);
+  }
+
+  factory Setting.fromJsonString(String jsonString) {
+    return Setting.fromJson(json.decode(jsonString) as Map<String, dynamic>);
+  }
+
+  String toJsonString() {
+    return json.encode(toJson());
   }
 
   static List<Setting> defaultSettings() {

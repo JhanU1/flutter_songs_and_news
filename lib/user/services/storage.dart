@@ -3,12 +3,16 @@ import 'dart:convert';
 import '../../repository/local_preferences.dart';
 import '../model/user_model.dart';
 
-class StorageUserRepository {
-  StorageUserRepository() {
-    _storage = LocalPreferences();
-  }
+class StorageUser {
+//singleton
+  static final StorageUser _instance = StorageUser._internal();
 
-  late LocalPreferences _storage;
+  factory StorageUser() {
+    return _instance;
+  }
+  StorageUser._internal();
+
+  final LocalPreferences _storage = LocalPreferences();
 
   Future<void> init() async {
     final List<String>? users = await _storage.read('users');

@@ -5,7 +5,8 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-import 'package:platform_design/ui/pages/home_page.dart';
+
+import 'ui/pages/navigation_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           child: Material(child: child),
         );
       },
-      home: HomePage(),
+      home: NavegationPage(),
     );
   }
 }

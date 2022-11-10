@@ -1,12 +1,26 @@
 import '../model/user_model.dart';
 import 'storage.dart';
 
-class AuthenticationRepository {
-  AuthenticationRepository() {
-    _storage = StorageUserRepository();
+class AuthenticationService {
+  // singleton
+  static final AuthenticationService _instance =
+      AuthenticationService._internal();
+
+  factory AuthenticationService() {
+    return _instance;
   }
 
-  late StorageUserRepository _storage;
+  AuthenticationService._internal();
+
+  final StorageUser _storage = StorageUser();
+
+  Future<void> init() async {
+    await _storage.init();
+  }
+
+  Future<User?> readUserLogged() async {
+    return await _storage.readUserLogged();
+  }
 
   Future<User> loginUser(String username, String password) async {
     try {

@@ -5,7 +5,6 @@ class User {
   String lastName;
   String userName;
   String password;
-  String email;
   String description;
 
   User({
@@ -13,7 +12,6 @@ class User {
     required this.lastName,
     required this.userName,
     required this.password,
-    required this.email,
     this.description = "",
   });
 
@@ -24,7 +22,6 @@ class User {
       lastName: map['lastName'] as String,
       userName: map['userName'] as String,
       password: map['password'] as String,
-      email: map['email'] as String,
       description: map['description'] as String,
     );
   }
@@ -35,7 +32,6 @@ class User {
       'lastName': lastName,
       'userName': userName,
       'password': password,
-      'email': email,
       'description': description,
     };
     return map.toString();
@@ -43,6 +39,6 @@ class User {
 
   @override
   String toString() {
-    return 'User{name: $name, lastName: $lastName, userName: $userName, password: $password, email: $email, description: $description}';
+    return 'User{name: $name, lastName: $lastName, userName: $userName, password: $password, description: $description}';
   }
 }
