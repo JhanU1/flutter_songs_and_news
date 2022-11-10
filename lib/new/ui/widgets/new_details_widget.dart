@@ -8,7 +8,6 @@ import '../../model/new_model.dart';
 class NewDetailsWidget extends StatelessWidget {
   NewDetailsWidget({super.key, required this.newModel});
   final New newModel;
-  final Color color = getRandomColor();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class NewDetailsWidget extends StatelessWidget {
               animation: heroAnimation,
               builder: (context, child) {
                 return PressableCard(
-                  color: color,
+                  color: newModel.color,
                   flattenAnimation: heroAnimation,
                   child: Stack(
                     alignment: Alignment.center,
@@ -63,7 +62,7 @@ class NewDetailsWidget extends StatelessWidget {
                 animation: animation,
                 builder: (context, child) {
                   return PressableCard(
-                    color: color,
+                    color: newModel.color,
                     flattenAnimation: animation,
                     child: Stack(
                       alignment: Alignment.center,
@@ -91,7 +90,7 @@ class NewDetailsWidget extends StatelessWidget {
           SizedBox(
               height: getHeigthForImage(),
               child: Image.network(getUriForRandomImageWithSize(
-                  MediaQuery.of(context).size.width.round(),
+                  getRandomNum(100, MediaQuery.of(context).size.width.round()),
                   getHeigthForImage().round()))),
           const Divider(
             height: 0,
@@ -101,19 +100,25 @@ class NewDetailsWidget extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15, top: 16, bottom: 8),
             child: Column(
               children: [
-                const Text(
-                  'Summary:',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+                Container(
+                  margin: const EdgeInsets.only(bottom: 20),
+                  child: const Text(
+                    'Summary',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 Text(newModel.content),
-                const Text(
-                  'More Info:',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+                Container(
+                  margin: const EdgeInsets.only(bottom: 20, top: 10),
+                  child: const Text(
+                    'More Info',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 Text(lorem(paragraphs: 3, words: 1000))
